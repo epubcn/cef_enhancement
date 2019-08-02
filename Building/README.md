@@ -1,6 +1,6 @@
 推荐按照正式分支版本来编译，CEF官网编译教程：https://bitbucket.org/chromiumembedded/cef/wiki/BranchesAndBuilding
 
-## 命令行/Terminal下上网代理设置
+## 命令行/Terminal设置上网代理
 set http_proxy=http://127.0.0.1:1080  
 set https_proxy=http://127.0.0.1:1080  
 端口号按需修改  
@@ -34,3 +34,4 @@ set CEF_ARCHIVE_FORMAT=tar.bz2
 --force-clean-deps  
 --minimal-distrib 产生不包含cefclient/cefsimple等测试工程的包  
 --client-distrib 产生cefclient程序包（编译好的可以直接运行）  
+更多参数可以参考 https://bitbucket.org/chromiumembedded/cef/raw/master/tools/automate/automate-git.py
