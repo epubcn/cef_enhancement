@@ -1,6 +1,6 @@
 推荐按照正式分支版本来编译，CEF官网编译教程：https://bitbucket.org/chromiumembedded/cef/wiki/BranchesAndBuilding
 
-## 命令行/Terminal设置上网代理
+## 命令行/Terminal设置上网代理 [为什么要设置代理？你懂的]
 set http_proxy=http://127.0.0.1:1080  
 set https_proxy=http://127.0.0.1:1080  
 端口号按需修改  
