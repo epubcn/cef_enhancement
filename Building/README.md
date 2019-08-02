@@ -35,3 +35,8 @@ set CEF_ARCHIVE_FORMAT=tar.bz2
 --minimal-distrib 产生不包含cefclient/cefsimple等测试工程的包  
 --client-distrib 产生cefclient程序包（编译好的可以直接运行）  
 更多参数可以参考 https://bitbucket.org/chromiumembedded/cef/raw/master/tools/automate/automate-git.py
+
+## 编译命令示例
+python automate-git.py --download-dir=D:\google\cef\source --branch=3729 --no-update --force-clean --force-build  
+
+
