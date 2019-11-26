@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+    .logBox {
+        border-color: #CCCCCC;
+        font-size: 11px;
+        font-family: Consolas, Tahoma, Verdana;
+        display: block;
+        width: 1280px;
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .videoBox {
+        width: 1280px; 
+        height: 720px; 
+        text-align:center; 
+        background: #000; 
+        margin:0 auto;
+    }
+    </style>
+</head>
+<body>
+    <div class="videoBox">
+        <video id="video_player" src="Elecard_about_Tomsk_part2_HEVC_720p.mp4" style="width:100%; height:100%" autoplay controls></video><br/>
+    </div>
+    <textarea id="log_box" rows="20" class="logBox" readonly></textarea>
+    <script>
+        var element = document.getElementById('video_player');
+        if(element.canPlayType) {
+            addlog('video.canPlayType is true');
+            if(element.canPlayType('video/mp4; codecs="avc1.42E01E"') == 'probably'
+                || element.canPlayType('video/mp4; codecs="avc1.42E01E, mp4a.40.2"') == 'probably') {
+                    addlog('video can play h264');
+            }else {
+                addlog('video cannot play h264');
+            }
+            //hvc1.1.L0.0 : macOS safari 13.0.4得到 probably
+            //hev1.1.L0.0 : macOS safari 13.0.4得到 maybe
+            //但是上面两个codec_id在Chromium中将会报错，media\base\video_codecs.cc中的ParseHEVCCodecId()会输出invalid general_profile_compatibility_flags
+            //按照ISO IEC 14496-15，可以使用下面的codec id让Chromium识别：
+            //hev1.1.2.L93.B0 :
+            //    a progressive, non-packed stream, Main Profile, Main Tier, Level 3.1.
+            //hev1.A4.41.H120.B0.23 :
+            //    a (mythical) progressive, non-packed stream in profile space 1, with general_profile_idc 4, 
+            //    some compatibility flags set, and in High tier at Level 4 and two bytes of constraint flags supplied
+            if(element.canPlayType('video/mp4; codecs="hvc1.1.L0.0"') == 'probably'
+                || element.canPlayType('video/mp4; codecs="hev1.1.L0.0"') == 'maybe'
+                || element.canPlayType('video/mp4; codecs="hev1.1.2.L93.B0"') == 'probably'
+                || element.canPlayType('video/mp4; codecs="hev1.A4.41.H120.B0.23"') == 'probably') {
+                    addlog('video can play h265');
+            }else {
+                addlog('video cannot play h265');
+            }
+
+        }else {
+            addlog('NOT FOUND video.canPlayType');
+        }
+
+        function addlog(log) {
+            var logbox = document.getElementById('log_box');
+            logbox.value = logbox.value + log + '\n';
+            logbox.scrollTop = logbox.scrollHeight;
+        }
+
+        function clearlog() {
+            document.getElementById('log_box').value = "";
+        }
+
+    </script>
+</body>
+</html>
