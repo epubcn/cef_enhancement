@@ -14,10 +14,10 @@ set GYP_MSVS_VERSION=2017
 set CEF_ARCHIVE_FORMAT=tar.bz2  
 set GN_ARGUMENTS=--ide=vs2017 --sln=cef --filters=//cef/*  
 ### macOS
-set CEF_USE_GN=1  
-set GN_DEFINES="is_official_build=true proprietary_codecs=true ffmpeg_branding=Chrome"  
-set GYP_DEFINES=buildtype=Official  
-set CEF_ARCHIVE_FORMAT=tar.bz2  
+export CEF_USE_GN=1  
+export GN_DEFINES="is_official_build=true proprietary_codecs=true ffmpeg_branding=Chrome"  
+export GYP_DEFINES=buildtype=Official  
+export CEF_ARCHIVE_FORMAT=tar.bz2  
 
 ## 编译参数
 --download-dir 源码下载目录  
